@@ -1,7 +1,13 @@
 // CRUD create read update delete
 
-const mongodb = require('mongodb')
-const MongoClient = mongodb.MongoClient
+// const mongodb = require('mongodb')
+// const MongoClient = mongodb.MongoClient
+// const ObjectId = mondodb.ObjectId
+
+const {
+  MongoClient,
+  ObjectId
+} = require('mongodb')
 
 const connectionURL = 'mongodb://127.0.0.1:27017'
 const databaseName = 'tastk-manager'
@@ -15,47 +21,50 @@ MongoClient.connect(connectionURL, {
 
   const db = client.db(databaseName)
 
-  //   db.collection('users').insertOne({
-  //     name: 'ice',
-  //     age: 'not 22 anymore'
-  //   }, (error, result) => {
-  //     if (error) {
-  //       return console.log('Unable to insert user')
-  //     }
-  //     console.log(result.ops)
-  //   })
+
+  // insertMany(docs, options, callback){Promise}
 
   // db.collection('users').insertMany([{
-  //   name: 'Jen',
-  //   age: '28'
-  // }, {
-  //   name: 'Gunther',
-  //   age: '27'
-  // }], (error, result) => {
-  //   if (error) {
-  //     return console.log('Unable to insert users')
-  //   }
+  //       name: 'Trudy',
+  //       age: 43
+  //     },
+  //     {
+  //       name: 'Gertrude',
+  //       age: 43
+  //     }
+  //   ])
+  //   .then((result) => {
+  //     console.log(result)
+  //   })
+  //   .catch((error) => {
+  //     console.log(error)
+  //   })
 
-  //   console.log(result.ops)
-  // })
+  // db.collection('users').deleteMany({
+  //     age: '55'
+  //   })
+  //   .then((result) => {
+  //     if (result.deletedCount === 0) {
+  //       return console.log('No user to delete.')
+  //     }
+  //     console.log(`the user${result.deletedCount > 1 ? 's have' : ' has'} been deleted`)
+  //     console.log(result.deletedCount)
+  //   })
+  //   .catch((error) => {
+  //     console.log('for some reason, unable to delete the user(s)')
+  //     console.log(error)
+  //   })
 
-  db.collection('tasks').insertMany([{
-      descricption: 'Do laundry',
-      completed: true
-    },
-    {
-      descricption: 'Clean appartment',
-      completed: false
-    },
-    {
-      descricption: 'Wash my hair',
-      completed: false
-    },
-  ], (error, result) => {
-    if (error) {
-      return console.log('Unable to insert tasks.')
-    }
-    console.log(result.ops)
-  })
 
+  // deleteOne(filter, options, callback){Promise}
+
+  db.collection('tasks').deleteOne({
+      descricption: 'bla bla bla'
+    })
+    .then((result) => {
+      console.log(result)
+    })
+    .catch((error) => {
+      console.log(error)
+    })
 })
